@@ -29,7 +29,6 @@ resource "google_cloudfunctions_function" "data_processor" {
   entry_point = "process_data"
   source_archive_bucket = google_storage_bucket.function_bucket.name
   source_archive_object = "cloud-function.zip"
-  trigger_http = false
   event_trigger {
     event_type = "google.pubsub.topic.publish"
     resource   = google_pubsub_topic.data_topic.id
