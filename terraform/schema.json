@@ -1,0 +1,17 @@
+[
+    {
+      "name": "column_name_1",
+      "type": "STRING",
+      "mode": "REQUIRED"
+    },
+    {
+      "name": "column_name_2",
+      "type": "INTEGER",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "column_name_3",
+      "type": "TIMESTAMP",
+      "mode": "NULLABLE"
+    }
+  ]
