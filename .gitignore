@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python,terraform
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,terraform
 
+# Ignore service account credentials
+credentials/service-account-key.json
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
