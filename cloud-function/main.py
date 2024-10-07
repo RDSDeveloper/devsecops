@@ -8,9 +8,17 @@ def process_data(event, context):
     table_ref = client.dataset(dataset_id).table(table_id)
 
     data = base64.b64decode(event['data']).decode('utf-8')
+    # Assuming data is a JSON string, parse it
+    import json
+    parsed_data = json.loads(data)
+
     # Process data as needed
     rows_to_insert = [
-        {u"column_name": data}  # Adjust according to your schema
+        {
+            "column_name_1": parsed_data.get("column_name_1"),
+            "column_name_2": parsed_data.get("column_name_2"),
+            "column_name_3": parsed_data.get("column_name_3")
+        }
     ]
 
     errors = client.insert_rows_json(table_ref, rows_to_insert)
