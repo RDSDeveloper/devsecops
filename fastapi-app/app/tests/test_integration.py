@@ -1,6 +1,7 @@
 import httpx
 import pytest
 from google.cloud import bigquery
+from google.cloud.bigquery import DatasetReference, TableReference
 
 
 @pytest.mark.asyncio
@@ -33,7 +34,8 @@ def test_data():
 def insert_test_data(bigquery_client, test_data):
     dataset_id = "analytics_dataset"
     table_id = "data_table"
-    table_ref = bigquery_client.dataset(dataset_id).table(table_id)
+    dataset_ref = DatasetReference(bigquery_client.project, dataset_id)
+    table_ref = TableReference(dataset_ref, table_id)
 
     # Insert test data into BigQuery
     errors = bigquery_client.insert_rows_json(table_ref, [test_data])
