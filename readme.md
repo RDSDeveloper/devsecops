@@ -87,4 +87,41 @@ This project demonstrates a complete end-to-end solution for data ingestion, sto
 2. **Caching**: Use caching mechanisms to reduce load on BigQuery for frequently accessed data.
 3. **Monitoring and Alerting**: Implement monitoring and alerting for critical metrics such as API response time and error rates.
 
+## Monitoring and Metrics
+
+### Proposed Metrics
+
+1. **Pub/Sub Message Processing Latency**: Measure the time taken from message publication to data storage in BigQuery.
+2. **API Response Time**: Track the time taken for the FastAPI application to respond to requests.
+3. **BigQuery Query Execution Time**: Monitor the time taken to execute queries in BigQuery.
+
+### Visualization Tool
+
+**Tool**: Google Cloud Monitoring
+
+- **Metrics to Display**:
+  - Pub/Sub Message Processing Latency
+  - API Response Time
+  - BigQuery Query Execution Time
+
+- **Strategic Insights**: Visualizing these metrics helps identify performance bottlenecks and optimize system performance.
+
+### Implementation Overview
+
+1. **Setup Google Cloud Monitoring**: Enable and configure it in your GCP project.
+2. **Create Dashboards**: Display the proposed metrics.
+3. **Alerting**: Set up alerts for critical thresholds.
+
+### Scaling Considerations
+
+- **Visualization Changes**: Use grouping and filtering for multiple systems.
+- **Additional Metrics**: Consider inter-system communication latency and error rates.
+- **Visualization Techniques**: Use heatmaps or aggregate views.
+
+### Challenges and Limitations
+
+- **Data Overload**: Implement effective filtering and aggregation.
+- **Alert Fatigue**: Ensure alerts are meaningful.
+- **Scalability of Monitoring Infrastructure**: Ensure it can handle increased load.
+
 --
