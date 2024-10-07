@@ -1,4 +1,5 @@
 import base64
+import json
 from google.cloud import bigquery
 
 def process_data(event, context):
@@ -8,11 +9,9 @@ def process_data(event, context):
     table_ref = client.dataset(dataset_id).table(table_id)
 
     data = base64.b64decode(event['data']).decode('utf-8')
-    # Assuming data is a JSON string, parse it
-    import json
     parsed_data = json.loads(data)
 
-    # Process data as needed
+    # Ensure the keys match your BigQuery schema
     rows_to_insert = [
         {
             "column_name_1": parsed_data.get("column_name_1"),
