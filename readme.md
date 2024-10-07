@@ -124,4 +124,48 @@ This project demonstrates a complete end-to-end solution for data ingestion, sto
 - **Alert Fatigue**: Ensure alerts are meaningful.
 - **Scalability of Monitoring Infrastructure**: Ensure it can handle increased load.
 
+## Alerting and SRE
+
+### Alert Rules and Thresholds
+
+1. **Pub/Sub Message Processing Latency**:
+   - **Threshold**: Alert if the average latency exceeds 5 seconds over a 5-minute window.
+   - **Rationale**: High latency in message processing can indicate bottlenecks in the data ingestion pipeline, potentially leading to delays in data availability.
+
+2. **API Response Time**:
+   - **Threshold**: Alert if the 95th percentile of response times exceeds 500 milliseconds over a 10-minute window.
+   - **Rationale**: Ensuring low response times is critical for user experience. Monitoring the 95th percentile helps catch outliers that could affect users.
+
+3. **BigQuery Query Execution Time**:
+   - **Threshold**: Alert if the average query execution time exceeds 2 seconds over a 10-minute window.
+   - **Rationale**: Slow query execution can impact data retrieval performance, affecting downstream applications and analytics.
+
+### SLIs and SLOs
+
+1. **SLI for Pub/Sub Message Processing Latency**:
+   - **SLI**: Percentage of messages processed within 5 seconds.
+   - **SLO**: 99% of messages should be processed within 5 seconds.
+   - **Rationale**: This SLI focuses on the efficiency of the data ingestion pipeline. A high SLO ensures timely data processing, which is crucial for real-time analytics.
+
+2. **SLI for API Response Time**:
+   - **SLI**: Percentage of API requests with response times under 500 milliseconds.
+   - **SLO**: 95% of API requests should have response times under 500 milliseconds.
+   - **Rationale**: This SLI ensures a responsive user experience. The SLO is set to 95% to account for occasional spikes due to network or server load.
+
+3. **SLI for BigQuery Query Execution Time**:
+   - **SLI**: Percentage of queries executed within 2 seconds.
+   - **SLO**: 98% of queries should be executed within 2 seconds.
+   - **Rationale**: This SLI ensures efficient data retrieval. A high SLO is necessary to maintain performance for analytics and reporting.
+
+### Why These SLIs/SLOs?
+
+- **Focus on User Experience**: The chosen SLIs directly impact user experience and system performance, which are critical for maintaining service quality.
+- **Actionable Metrics**: These SLIs are actionable, meaning they can be directly influenced by system improvements and optimizations.
+- **Exclusion of Other Metrics**: Metrics like CPU/RAM/DISK usage are excluded from SLIs because they are more indicative of resource utilization rather than direct service performance. They are still important for monitoring but are not primary indicators of service quality.
+
+### Implementation with Google Cloud Monitoring
+
+- **Alerting**: Use Google Cloud Monitoring to set up alerting policies based on the defined thresholds. Configure notifications to be sent to the appropriate team members via email, SMS, or integration with incident management tools like PagerDuty.
+- **SLI/SLO Monitoring**: Use Google Cloud Monitoring's SLO feature to define and track SLIs and SLOs. This allows for continuous monitoring and reporting on service performance against the defined objectives.
+
 --
