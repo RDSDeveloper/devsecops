@@ -12,4 +12,6 @@ steps:
 substitutions:
   _REGION: 'us-central1'
   _PROJECT_ID: 'devsecops-437822'
+
+
   

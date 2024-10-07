@@ -62,8 +62,8 @@ resource "google_cloudbuild_trigger" "fastapi_trigger" {
   name = "fastapi-deploy-trigger"
 
   github {
-    owner = "your-github-username"
-    name  = "your-repo-name"
+    owner = "RDSDeveloper"
+    name  = "devsecops"
     push {
       branch = "main"
     }
