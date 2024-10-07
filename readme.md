@@ -8,7 +8,7 @@ This project demonstrates a cloud-based data ingestion, storage, and exposure sy
 - **Cloud Function**: Processes incoming messages and stores them in BigQuery.
 - **BigQuery**: Stores processed data for analytics.
 - **Cloud Run**: Hosts a FastAPI application to expose data via HTTP GET requests.
-- **GitHub Actions**: CI/CD pipeline for deploying the FastAPI application.
+- **CloudBuild**: CI/CD pipeline for deploying the FastAPI application.
 
 ## Setup
 

@@ -49,8 +49,25 @@ resource "google_cloud_run_service" "fastapi_service" {
   template {
     spec {
       containers {
-        image = "REGION-docker.pkg.dev/${var.project_id}/fastapi-repo/fastapi-app:latest"
+        image = "us-central1-docker.pkg.dev/${var.project_id}/fastapi-repo/fastapi-app:latest"
+        ports {
+          container_port = 8080
+        }
       }
     }
   }
+}
+
+resource "google_cloudbuild_trigger" "fastapi_trigger" {
+  name = "fastapi-deploy-trigger"
+
+  github {
+    owner = "your-github-username"
+    name  = "your-repo-name"
+    push {
+      branch = "main"
+    }
+  }
+
+  filename = "fastapi-app/cloudbuild.yaml"
 }

@@ -1,0 +1,14 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/fastapi-repo/fastapi-app:latest', '.']
+    dir: 'fastapi-app'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/fastapi-repo/fastapi-app:latest']
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['run', 'deploy', 'fastapi-service', '--image', '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/fastapi-repo/fastapi-app:latest', '--region', 'us-central1', '--platform', 'managed']
+
+substitutions:
+  _REGION: 'us-central1'
+  _PROJECT_ID: 'devsecops-437822'
