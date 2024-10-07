@@ -68,5 +68,4 @@ The CI/CD pipeline is defined in `cloudbuild.yaml` and includes the following st
 ## Conclusion
 
 This project demonstrates a complete end-to-end solution for data ingestion, storage, and exposure using cloud-native technologies and best practices in IaC and CI/CD.
-
----
+--

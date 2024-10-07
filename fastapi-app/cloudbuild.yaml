@@ -8,10 +8,16 @@ steps:
     args: ['push', '${_AR_HOSTNAME}/${PROJECT_ID}/cloud-run-source-deploy/${REPO_NAME}/${_SERVICE_NAME}:${COMMIT_SHA}']
     id: Push
 
+
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
     args: ['run', 'services', 'update', '${_SERVICE_NAME}', '--platform=managed', '--image=${_AR_HOSTNAME}/${PROJECT_ID}/cloud-run-source-deploy/${REPO_NAME}/${_SERVICE_NAME}:${COMMIT_SHA}', '--region=${_DEPLOY_REGION}', '--quiet']
     entrypoint: gcloud
     id: Deploy
+
+  - name: 'python'
+    entrypoint: 'bash'
+    args: ['-c', 'pip install -r app/requirements.txt && pytest app/tests']
+    id: Test
 
 substitutions:
   _SERVICE_NAME: 'fastapi-service'

@@ -1,3 +1,6 @@
 fastapi
 uvicorn
 google-cloud-bigquery
+pytest
+pytest-asyncio
+httpx
