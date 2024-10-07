@@ -71,3 +71,4 @@ resource "google_cloudbuild_trigger" "fastapi_trigger" {
 
   filename = "fastapi-app/cloudbuild.yaml"
 }
+
