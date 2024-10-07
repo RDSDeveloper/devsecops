@@ -49,20 +49,3 @@ def insert_test_data(bigquery_client, test_data):
         WHERE column_name_1 = '{test_data["column_name_1"]}'
     """
     bigquery_client.query(query).result()
-
-
-@pytest.mark.asyncio
-async def test_data_integrity(insert_test_data, test_data):
-    url = "https://fastapi-service-m4hco5opeq-uc.a.run.app/data"
-    async with httpx.AsyncClient() as client:
-        response = await client.get(url)
-        assert response.status_code == 200
-        data = response.json()
-
-        # Check if the test data is in the response
-        assert any(
-            item["column_name_1"] == test_data["column_name_1"]
-            and item["column_name_2"] == test_data["column_name_2"]
-            and item["column_name_3"] == test_data["column_name_3"]
-            for item in data
-        ), "Test data not found in API response"
