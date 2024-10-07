@@ -58,17 +58,3 @@ resource "google_cloud_run_service" "fastapi_service" {
   }
 }
 
-resource "google_cloudbuild_trigger" "fastapi_trigger" {
-  name = "fastapi-deploy-trigger"
-
-  github {
-    owner = "RDSDeveloper"
-    name  = "devsecops"
-    push {
-      branch = "main"
-    }
-  }
-
-  filename = "fastapi-app/cloudbuild.yaml"
-}
-
