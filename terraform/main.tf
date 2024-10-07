@@ -24,11 +24,17 @@ resource "google_bigquery_table" "data_table" {
 }
 
 resource "google_cloudfunctions_function" "data_processor" {
-  name        = "data-processor"
-  runtime     = "python310"
-  entry_point = "process_data"
+  name                  = "data-processor"
+  runtime               = "python310"
+  entry_point           = "process_data"
   source_archive_bucket = google_storage_bucket.function_bucket.name
   source_archive_object = "cloud-function.zip"
+
+  available_memory_mb = 256
+  timeout             = 60
+  max_instances       = 10
+  min_instances       = 1
+
   event_trigger {
     event_type = "google.pubsub.topic.publish"
     resource   = google_pubsub_topic.data_topic.id
@@ -36,11 +42,11 @@ resource "google_cloudfunctions_function" "data_processor" {
 }
 
 resource "google_artifact_registry_repository" "docker_repo" {
-  provider = google-beta
-  location = var.region
+  provider      = google-beta
+  location      = var.region
   repository_id = "fastapi-repo"
-  format = "DOCKER"
-  project = var.project_id  
+  format        = "DOCKER"
+  project       = var.project_id
 }
 
 resource "google_cloud_run_service" "fastapi_service" {
