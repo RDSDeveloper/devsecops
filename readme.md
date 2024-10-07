@@ -63,7 +63,7 @@ The CI/CD pipeline is defined in `cloudbuild.yaml` and includes the following st
 
 ## Diagram
 
-![Architecture Diagram](link_to_diagram.png)
+![Architecture Diagram](assets/arquitecture.png)
 
 ## Conclusion
 
@@ -168,4 +168,3 @@ This project demonstrates a complete end-to-end solution for data ingestion, sto
 - **Alerting**: Use Google Cloud Monitoring to set up alerting policies based on the defined thresholds. Configure notifications to be sent to the appropriate team members via email, SMS, or integration with incident management tools like PagerDuty.
 - **SLI/SLO Monitoring**: Use Google Cloud Monitoring's SLO feature to define and track SLIs and SLOs. This allows for continuous monitoring and reporting on service performance against the defined objectives.
 
---
