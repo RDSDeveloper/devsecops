@@ -15,6 +15,10 @@ async def test_get_data():
         assert len(data) > 0
         assert "column_name_1" in data[0]
 
+# Propose additional integration tests
+# 1. Test data ingestion by publishing a message to the Pub/Sub topic and verifying it is processed and stored in BigQuery.
+# 2. Test data retrieval with different query parameters to ensure the API handles them correctly.
+# 3. Test the system's behavior under load by simulating multiple concurrent requests to the API.
 
 @pytest.fixture(scope="module")
 def bigquery_client():
@@ -49,3 +53,13 @@ def insert_test_data(bigquery_client, test_data):
         WHERE column_name_1 = '{test_data["column_name_1"]}'
     """
     bigquery_client.query(query).result()
+
+# Identify critical points and propose testing or measurement methods
+# 1. Pub/Sub message processing latency: Measure the time taken from message publication to data storage.
+# 2. API response time: Monitor and log response times to identify performance bottlenecks.
+# 3. BigQuery query performance: Analyze query execution times and optimize as needed.
+
+# Propose system robustness improvements
+# 1. Implement retries and exponential backoff for Pub/Sub message processing to handle transient errors.
+# 2. Use caching mechanisms to reduce load on BigQuery for frequently accessed data.
+# 3. Implement monitoring and alerting for critical metrics such as API response time and error rates.

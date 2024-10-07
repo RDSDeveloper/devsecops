@@ -68,4 +68,23 @@ The CI/CD pipeline is defined in `cloudbuild.yaml` and includes the following st
 ## Conclusion
 
 This project demonstrates a complete end-to-end solution for data ingestion, storage, and exposure using cloud-native technologies and best practices in IaC and CI/CD.
+
+## Proposed Integration Tests
+
+1. **Data Ingestion Test**: Validate that messages published to the Pub/Sub topic are correctly processed and stored in BigQuery.
+2. **API Query Parameter Test**: Ensure the API correctly handles various query parameters and returns expected results.
+3. **Load Test**: Simulate multiple concurrent requests to the API to assess system performance under load.
+
+## Critical Points and Testing Proposals
+
+1. **Pub/Sub Message Processing Latency**: Measure the time from message publication to data storage in BigQuery.
+2. **API Response Time**: Monitor and log response times to identify performance bottlenecks.
+3. **BigQuery Query Performance**: Analyze and optimize query execution times.
+
+## System Robustness Improvements
+
+1. **Retries and Backoff**: Implement retries with exponential backoff for Pub/Sub message processing to handle transient errors.
+2. **Caching**: Use caching mechanisms to reduce load on BigQuery for frequently accessed data.
+3. **Monitoring and Alerting**: Implement monitoring and alerting for critical metrics such as API response time and error rates.
+
 --
