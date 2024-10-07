@@ -16,6 +16,7 @@ steps:
   - name: 'python'
     entrypoint: 'bash'
     args: ['-c', 'pip install -r app/requirements.txt && pytest app/tests']
+    dir: 'fastapi-app'
     id: Test
 
 options:
